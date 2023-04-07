@@ -23,7 +23,7 @@ def auth_principal(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         p_str = request.headers.get('X-Principal')
-        assertions.assert_auth(p_str is not None, 'principal not found')
+        assertions.assert_auth(p_str is not None, 'UNAUTHORIZED')
         p_dict = json.loads(p_str)
         p = Principal(
             user_id=p_dict['user_id'],
